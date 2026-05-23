@@ -46,13 +46,13 @@ public class CnabService {
         transacao.setTipo(tipo.getDescricao());
         transacao.setNatureza(tipo.getNatureza());
         transacao.setSinal(tipo.getSinal());
-        transacao.setData(LocalDate.parse(linha.substring(1, 0), DateTimeFormatter.BASIC_ISO_DATE));
+        transacao.setData(LocalDate.parse(linha.substring(1, 9), DateTimeFormatter.BASIC_ISO_DATE));
         transacao.setValor(new BigDecimal(linha.substring(9, 19)).divide(new BigDecimal(100)));
         transacao.setCpf(linha.substring(19,30));
         transacao.setCartao(linha.substring(30, 42));
         transacao.setHora(LocalTime.parse(linha.substring(42, 48), DateTimeFormatter.ofPattern("HHmmss")));
         transacao.setDonoLoja(linha.substring(48, 62).trim());
-        transacao.setNomeLoja(linha.substring(62, 81));
+        transacao.setNomeLoja(linha.substring(62).trim());
 
         return transacao;
     }
